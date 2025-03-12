@@ -2,7 +2,7 @@ use winit::{
     application::ApplicationHandler,
     event::WindowEvent,
     event_loop::{ActiveEventLoop, ControlFlow, EventLoop},
-    window::{Window, WindowId},
+    window::{Window, WindowAttributes, WindowId},
 };
 
 #[derive(Default)]
@@ -14,7 +14,11 @@ impl ApplicationHandler for App {
     fn resumed(&mut self, event_loop: &ActiveEventLoop) {
         self.window = Some(
             event_loop
-                .create_window(Window::default_attributes())
+                .create_window(
+                    Window::default_attributes()
+                    .with_title(String::from("migus engine"))
+                    //.with_inner_size(winit::dpi::LogicalSize::new(128.0, 128.0))
+            )
                 .unwrap(),
         );
     }
